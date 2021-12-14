@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import express from 'express';
 
 const SERVER_PORT = 3000;
