@@ -7,9 +7,10 @@ import {
   ManyToOne,
   PrimaryColumn,
 } from 'typeorm';
+import { Category } from './Category';
 
 @Entity('videos')
-export class Category {
+export class Video {
   @PrimaryColumn()
   id: string;
 
