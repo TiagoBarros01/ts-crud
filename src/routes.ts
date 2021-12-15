@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { CreateCategoryController } from "./controllers/CreateCategoryController";
+import { CreateVideoController } from "./controllers/CreateVideoController";
 import { DeleteCategoryController } from "./controllers/DeleteCategoryController";
 import { GetAllCategoriesController } from "./controllers/GetAllCategoriesController";
 import { UpdateCategoryController } from "./controllers/UpdateCategoryController";
@@ -11,7 +12,11 @@ const getAllCategoriesController = new GetAllCategoriesController().handle;
 const deleteCategoryController = new DeleteCategoryController().handle;
 const updateCategoryController = new UpdateCategoryController().handle;
 
-routes.post('/categories', createCategoryController)
-routes.get('/categories', getAllCategoriesController)
-routes.put('/categories/:id', updateCategoryController)
-routes.delete('/categories/:id', deleteCategoryController)
+const createVideoController = new CreateVideoController().handle;
+
+routes.post("/categories", createCategoryController);
+routes.get("/categories", getAllCategoriesController);
+routes.put("/categories/:id", updateCategoryController);
+routes.delete("/categories/:id", deleteCategoryController);
+
+routes.post("/videos", createVideoController);
