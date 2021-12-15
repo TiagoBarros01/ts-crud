@@ -3,6 +3,8 @@ import express from 'express';
 
 const SERVER_PORT = 3000;
 
+import './database'
+
 const app = express();
 
 app.listen(SERVER_PORT, () =>
