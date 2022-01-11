@@ -6,6 +6,7 @@ import { GetAllCategoriesController } from "./controllers/GetAllCategoriesContro
 import { GetAllVideosController } from "./controllers/GetAllVideosController";
 import { DeleteVideoController } from "./controllers/DeleteVideoController";
 import { UpdateCategoryController } from "./controllers/UpdateCategoryController";
+import { UpdateVideoController } from "./controllers/UpdateVideoController";
 
 export const routes = Router();
 
@@ -17,6 +18,7 @@ const updateCategoryController = new UpdateCategoryController().handle;
 const createVideoController = new CreateVideoController().handle;
 const getAllVideosController = new GetAllVideosController().handle;
 const deleteVideoController = new DeleteVideoController().handle;
+const updateVideoController = new UpdateVideoController().handle;
 
 routes.post("/categories", createCategoryController);
 routes.get("/categories", getAllCategoriesController);
@@ -26,3 +28,4 @@ routes.delete("/categories/:id", deleteCategoryController);
 routes.post("/videos", createVideoController);
 routes.get("/videos", getAllVideosController);
 routes.delete("/videos/:id", deleteVideoController);
+routes.put("/videos/:id", updateVideoController);
