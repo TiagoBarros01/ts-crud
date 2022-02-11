@@ -2,7 +2,7 @@ import { randomUUID as uuid } from 'crypto';
 import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity('categories')
-export class Category {
+export class Categories {
   @PrimaryColumn()
   id: string;
 

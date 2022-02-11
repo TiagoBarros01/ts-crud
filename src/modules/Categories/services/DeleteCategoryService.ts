@@ -1,9 +1,9 @@
 import { getRepository } from "typeorm";
-import { Category } from "../entities/Category";
+import { Categories } from "../entities/Categories";
 
 export class DeleteCategoryService {
   async execute(id: string): Promise<Error | {}> {
-    const repo = getRepository(Category);
+    const repo = getRepository(Categories);
 
     if (!(await repo.findOne(id))) {
       return new Error("Category doesn't exists!");

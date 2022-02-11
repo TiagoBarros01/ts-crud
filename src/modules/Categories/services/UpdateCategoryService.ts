@@ -1,5 +1,5 @@
 import { getRepository } from "typeorm";
-import { Category } from "../entities/Category";
+import { Categories } from "../entities/Categories";
 import { CategoryRequest } from "./CreateCategoryService";
 
 export type CategoryUpdateRequest = CategoryRequest & {
@@ -8,7 +8,7 @@ export type CategoryUpdateRequest = CategoryRequest & {
 
 export class UpdateCategoryService {
   async execute({ name, description, id }: CategoryUpdateRequest) {
-    const repo = getRepository(Category);
+    const repo = getRepository(Categories);
 
     const category = await repo.findOne(id);
 

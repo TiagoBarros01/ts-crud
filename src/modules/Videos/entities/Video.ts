@@ -7,7 +7,7 @@ import {
   ManyToOne,
   PrimaryColumn,
 } from 'typeorm';
-import { Category } from '../../Categories/entities/Category';
+import { Categories } from '../../Categories/entities/Categories';
 
 @Entity('videos')
 export class Video {
@@ -23,9 +23,9 @@ export class Video {
   @Column()
   category_id: string;
 
-  @ManyToOne(() => Category)
+  @ManyToOne(() => Categories)
   @JoinColumn({ name: 'category_id' })
-  category: Category;
+  category: Categories;
 
   @Column()
   duration: number;

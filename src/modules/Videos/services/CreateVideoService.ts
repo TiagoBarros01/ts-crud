@@ -1,5 +1,5 @@
 import { getRepository } from "typeorm";
-import { Category } from "../../Categories/entities/Category";
+import { Categories } from "../../Categories/entities/Categories";
 import { Video } from "../entities/Video";
 
 export type VideoRequest = {
@@ -17,7 +17,7 @@ export class CreateVideoService {
     category_id,
   }: VideoRequest): Promise<Video | Error> {
     const videoRepo = getRepository(Video);
-    const categoryRepo = getRepository(Category);
+    const categoryRepo = getRepository(Categories);
 
     const categoryExists = categoryRepo.findOne(category_id);
 
