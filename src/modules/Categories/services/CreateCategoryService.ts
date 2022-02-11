@@ -1,5 +1,5 @@
-import { getRepository } from "typeorm";
 import { Categories } from "../entities/Categories";
+import { CategoryRepository } from "../repositories/CategoryRepository";
 
 export type CategoryRequest = {
   name: string;
@@ -7,6 +7,8 @@ export type CategoryRequest = {
 };
 
 export class CreateCategoryService {
+  private categoryRepository = new CategoryRepository();
+
   async execute({
     name,
     description,
@@ -15,18 +17,18 @@ export class CreateCategoryService {
       return new Error("Name and Description cannot be empty");
     }
 
-    const repo = getRepository(Categories);
+    const alreadyHasCategory = await this.categoryRepository.findByName(name);
 
-    if (await repo.findOne({ name })) {
+    if (alreadyHasCategory) {
       return new Error("Category already exists");
     }
 
-    const category = repo.create({
+    const category = await this.categoryRepository.create({
       name,
       description,
     });
 
-    await repo.save(category);
+    await this.categoryRepository.save(category);
 
     return category;
   }
