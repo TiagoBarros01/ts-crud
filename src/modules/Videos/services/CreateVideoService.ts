@@ -1,5 +1,5 @@
 import { getRepository } from "typeorm";
-import { Category } from "../entities/Category";
+import { Category } from "../../Categories/entities/Category";
 import { Video } from "../entities/Video";
 
 export type VideoRequest = {

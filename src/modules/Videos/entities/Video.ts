@@ -7,7 +7,7 @@ import {
   ManyToOne,
   PrimaryColumn,
 } from 'typeorm';
-import { Category } from './Category';
+import { Category } from '../../Categories/entities/Category';
 
 @Entity('videos')
 export class Video {
