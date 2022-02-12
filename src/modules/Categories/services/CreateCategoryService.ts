@@ -1,10 +1,6 @@
+import { CreateCategoryDTO } from "../dtos/CreateCategoryDTO";
 import { Categories } from "../entities/Categories";
 import { CategoryRepository } from "../repositories/CategoryRepository";
-
-export type CategoryRequest = {
-  name: string;
-  description: string;
-};
 
 export class CreateCategoryService {
   private categoryRepository = new CategoryRepository();
@@ -12,7 +8,7 @@ export class CreateCategoryService {
   async execute({
     name,
     description,
-  }: CategoryRequest): Promise<Categories | Error> {
+  }: CreateCategoryDTO): Promise<Categories | Error> {
     if (!name || !description) {
       return new Error("Name and Description cannot be empty");
     }

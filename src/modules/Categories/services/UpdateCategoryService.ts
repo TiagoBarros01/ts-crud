@@ -1,7 +1,7 @@
+import { CreateCategoryDTO } from "../dtos/CreateCategoryDTO";
 import { CategoryRepository } from "../repositories/CategoryRepository";
-import { CategoryRequest } from "./CreateCategoryService";
 
-export type CategoryUpdateRequest = CategoryRequest & {
+export type CategoryUpdateRequest = CreateCategoryDTO & {
   id: string;
 };
 
