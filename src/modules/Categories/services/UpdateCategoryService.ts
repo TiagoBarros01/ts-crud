@@ -1,5 +1,4 @@
-import { getRepository } from "typeorm";
-import { Categories } from "../entities/Categories";
+import { CategoryRepository } from "../repositories/CategoryRepository";
 import { CategoryRequest } from "./CreateCategoryService";
 
 export type CategoryUpdateRequest = CategoryRequest & {
@@ -7,10 +6,10 @@ export type CategoryUpdateRequest = CategoryRequest & {
 };
 
 export class UpdateCategoryService {
-  async execute({ name, description, id }: CategoryUpdateRequest) {
-    const repo = getRepository(Categories);
+  private categoryRepository = new CategoryRepository();
 
-    const category = await repo.findOne(id);
+  async execute({ name, description, id }: CategoryUpdateRequest) {
+    const category = await this.categoryRepository.findById(id);
 
     if (!category) {
       return new Error("Category doesn't exists");
@@ -19,7 +18,7 @@ export class UpdateCategoryService {
     category.name = name ? name : category.name;
     category.description = description ? description : category.description;
 
-    await repo.save(category);
+    await this.categoryRepository.save(category);
 
     return category;
   }
