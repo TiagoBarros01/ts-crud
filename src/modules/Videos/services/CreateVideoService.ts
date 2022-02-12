@@ -1,38 +1,32 @@
-import { getRepository } from "typeorm";
-import { Categories } from "../../Categories/entities/Categories";
+import { CategoryRepository } from "../../Categories/repositories/CategoryRepository";
+import { CreateVideoDTO } from "../dtos/CreateVideoRepositoryDTO";
 import { Video } from "../entities/Video";
-
-export type VideoRequest = {
-  name: string;
-  description: string;
-  duration: number;
-  category_id: string;
-};
+import { VideoRepository } from "../repositories/VideoRepository";
 
 export class CreateVideoService {
+  private categoryRepository = new CategoryRepository();
+  private videoRepository = new VideoRepository();
+
   async execute({
     name,
     description,
     duration,
     category_id,
-  }: VideoRequest): Promise<Video | Error> {
-    const videoRepo = getRepository(Video);
-    const categoryRepo = getRepository(Categories);
-
-    const categoryExists = categoryRepo.findOne(category_id);
+  }: CreateVideoDTO): Promise<Video | Error> {
+    const categoryExists = this.categoryRepository.findById(category_id);
 
     if (!categoryExists) {
       return new Error("Category doesn't exists'");
     }
 
-    const video = videoRepo.create({
+    const video = await this.videoRepository.create({
       name,
       description,
       category_id,
       duration,
     });
 
-    await videoRepo.save(video);
+    await this.videoRepository.save(video);
 
     return video;
   }
