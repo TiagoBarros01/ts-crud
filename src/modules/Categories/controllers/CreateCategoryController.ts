@@ -1,12 +1,14 @@
 import { Request, Response } from "express";
+import { CreateCategoryDTO } from "../dtos/CreateCategoryDTO";
 import {
-  CategoryRequest,
   CreateCategoryService,
 } from "../services/CreateCategoryService";
 
+type RequestParams = CreateCategoryDTO;
+
 export class CreateCategoryController {
   async handle(req: Request, res: Response) {
-    const { name, description } = req.body as CategoryRequest;
+    const { name, description } = req.body as RequestParams;
 
     const service = new CreateCategoryService();
 
