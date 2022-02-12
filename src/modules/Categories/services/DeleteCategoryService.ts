@@ -1,15 +1,16 @@
-import { getRepository } from "typeorm";
-import { Categories } from "../entities/Categories";
+import { CategoryRepository } from "../repositories/CategoryRepository";
 
 export class DeleteCategoryService {
-  async execute(id: string): Promise<Error | {}> {
-    const repo = getRepository(Categories);
+  private categoryRepository = new CategoryRepository();
 
-    if (!(await repo.findOne(id))) {
+  async execute(id: string): Promise<Error | {}> {
+    const category = await this.categoryRepository.findById(id);
+
+    if (!category) {
       return new Error("Category doesn't exists!");
     }
 
-    await repo.delete(id);
+    await this.categoryRepository.remove([category]);
 
     return {};
   }
