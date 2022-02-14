@@ -1,12 +1,15 @@
 import { getRepository } from "typeorm";
-import { Video } from "../entities/Video";
-import { VideoRequest } from "./CreateVideoService";
+import { CreateVideoDTO } from "../dtos/CreateVideoRepositoryDTO";
+import { Videos } from "../entities/Videos";
+import { VideoRepository } from "../repositories/VideoRepository";
 
-export type UpdateVideoRequest = VideoRequest & {
+export type UpdateVideoRequest = CreateVideoDTO & {
   id: string;
 };
 
 export class UpdateVideoService {
+  private videoRepository = new VideoRepository();
+
   async execute({
     id,
     name,
@@ -14,20 +17,20 @@ export class UpdateVideoService {
     duration,
     category_id,
   }: UpdateVideoRequest) {
-    const repo = getRepository(Video);
-
-    const video = await repo.findOne(id);
+    const video = await this.videoRepository.findById(id);
 
     if (!video) {
       return new Error("Video does not exists");
     }
 
-    video.category_id = category_id ? category_id : video.category_id;
-    video.description = description ? description : video.description;
-    video.name = name ? name : video.name;
-    video.duration = duration ? duration : video.duration;
+    const updatedVideo = Object.assign(video, {
+      name,
+      description,
+      duration,
+      category_id,
+    });
 
-    await repo.save(video);
+    await this.videoRepository.save(updatedVideo);
 
     return video;
   }

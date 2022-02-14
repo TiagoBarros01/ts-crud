@@ -1,4 +1,3 @@
-import { getRepository } from "typeorm";
 import { CategoryRepository } from "../repositories/CategoryRepository";
 
 export class GetAllCategoriesService {

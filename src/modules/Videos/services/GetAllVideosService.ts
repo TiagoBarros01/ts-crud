@@ -1,14 +1,11 @@
-import { getRepository } from "typeorm";
-import { Video } from "../entities/Video";
+import { VideoRepository } from "../repositories/VideoRepository";
 
 export class GetAllVideosService {
-  async execute(): Promise<Video[]> {
-    const repo = getRepository(Video);
+  private videoRepository = new VideoRepository();
 
-    const video = await repo.find({
-      relations: ['category']
-    });
+  async execute() {
+    const videos = await this.videoRepository.findAll();
 
-    return video;
+    return videos;
   }
 }

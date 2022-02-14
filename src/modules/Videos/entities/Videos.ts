@@ -10,7 +10,7 @@ import {
 import { Categories } from '../../Categories/entities/Categories';
 
 @Entity('videos')
-export class Video {
+export class Videos {
   @PrimaryColumn()
   id: string;
 

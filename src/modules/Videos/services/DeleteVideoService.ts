@@ -1,15 +1,16 @@
-import { getRepository } from "typeorm";
-import { Video } from "../entities/Video";
+import { VideoRepository } from "../repositories/VideoRepository";
 
 export class DeleteVideoService {
-  async execute(id: string): Promise<Error | {}> {
-    const repo = getRepository(Video);
+  private videoRepository = new VideoRepository();
 
-    if (!(await repo.findOne(id))) {
+  async execute(id: string) {
+    const videoExists = await this.videoRepository.findById(id);
+
+    if (!videoExists) {
       return new Error("Video does not exists!");
     }
 
-    await repo.delete(id);
+    await this.videoRepository.remove([videoExists]);
 
     return {};
   }

@@ -1,14 +1,14 @@
 import { Repository } from "typeorm";
 import { CreateVideoDTO } from "../../dtos/CreateVideoRepositoryDTO";
-import { Video } from "../../entities/Video";
+import { Videos } from "../../entities/Videos";
 
 export interface VideoRepositoryData {
-  ormRepository: Repository<Video>;
-  findById(id: string): Promise<Video | undefined>;
-  findByName(name: string): Promise<Video | undefined>;
-  findByCategoryId(categoryId: string): Promise<Video | undefined>;
-  findAll(): Promise<Video[]>;
-  create(data: CreateVideoDTO): Promise<Video>;
-  save(video: Video): Promise<Video>;
-  remove(videos: Video[]): Promise<void>;
+  ormRepository: Repository<Videos>;
+  findById(id: string): Promise<Videos | undefined>;
+  findByName(name: string): Promise<Videos | undefined>;
+  findByCategoryId(categoryId: string): Promise<Videos | undefined>;
+  findAll(): Promise<Videos[]>;
+  create(data: CreateVideoDTO): Promise<Videos>;
+  save(video: Videos): Promise<Videos>;
+  remove(videos: Videos[]): Promise<void>;
 }

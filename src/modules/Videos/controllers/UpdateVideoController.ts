@@ -1,15 +1,15 @@
 import { Request, Response } from "express";
-import { VideoRequest } from "../services/CreateVideoService";
+import { CreateVideoDTO } from "../dtos/CreateVideoRepositoryDTO";
 import { UpdateVideoService } from "../services/UpdateVideoService";
 
-export type RequestParams = VideoRequest & {
+export type RequestParams = CreateVideoDTO & {
   id: string;
 };
 
 export class UpdateVideoController {
   async handle(req: Request, res: Response) {
     const { id } = req.params as Pick<RequestParams, 'id'>;
-    const { name, duration, description, category_id } = req.body as Omit<RequestParams, 'id'>;
+    const { name, duration, description, category_id } = req.body as CreateVideoDTO;
 
     const service = new UpdateVideoService();
 

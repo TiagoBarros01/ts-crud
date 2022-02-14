@@ -1,6 +1,5 @@
 import { CategoryRepository } from "../../Categories/repositories/CategoryRepository";
 import { CreateVideoDTO } from "../dtos/CreateVideoRepositoryDTO";
-import { Video } from "../entities/Video";
 import { VideoRepository } from "../repositories/VideoRepository";
 
 export class CreateVideoService {
@@ -12,7 +11,7 @@ export class CreateVideoService {
     description,
     duration,
     category_id,
-  }: CreateVideoDTO): Promise<Video | Error> {
+  }: CreateVideoDTO) {
     const categoryExists = this.categoryRepository.findById(category_id);
 
     if (!categoryExists) {
