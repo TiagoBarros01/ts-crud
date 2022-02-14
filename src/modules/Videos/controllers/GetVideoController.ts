@@ -3,7 +3,7 @@ import { GetVideoService } from "../services/GetVideoService";
 
 type RequestParams = {
   id: string;
-}
+};
 
 export class GetVideoController {
   async handle(req: Request, res: Response) {

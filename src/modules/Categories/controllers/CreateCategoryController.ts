@@ -1,8 +1,6 @@
 import { Request, Response } from "express";
 import { CreateCategoryDTO } from "../dtos/CreateCategoryDTO";
-import {
-  CreateCategoryService,
-} from "../services/CreateCategoryService";
+import { CreateCategoryService } from "../services/CreateCategoryService";
 
 type RequestParams = CreateCategoryDTO;
 

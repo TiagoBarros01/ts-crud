@@ -3,7 +3,7 @@ import { DeleteVideoService } from "../services/DeleteVideoService";
 
 type RequestParams = {
   id: string;
-}
+};
 
 export class DeleteVideoController {
   async handle(req: Request, res: Response) {

@@ -1,4 +1,4 @@
-import { randomUUID as uuid } from 'crypto';
+import { randomUUID as uuid } from "crypto";
 import {
   Column,
   CreateDateColumn,
@@ -6,10 +6,10 @@ import {
   JoinColumn,
   ManyToOne,
   PrimaryColumn,
-} from 'typeorm';
-import { Categories } from '../../Categories/entities/Categories';
+} from "typeorm";
+import { Categories } from "../../Categories/entities/Categories";
 
-@Entity('videos')
+@Entity("videos")
 export class Videos {
   @PrimaryColumn()
   id: string;
@@ -24,7 +24,7 @@ export class Videos {
   category_id: string;
 
   @ManyToOne(() => Categories)
-  @JoinColumn({ name: 'category_id' })
+  @JoinColumn({ name: "category_id" })
   category: Categories;
 
   @Column()

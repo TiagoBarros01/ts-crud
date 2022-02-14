@@ -6,12 +6,7 @@ export class CreateVideoService {
   private categoryRepository = new CategoryRepository();
   private videoRepository = new VideoRepository();
 
-  async execute({
-    name,
-    description,
-    duration,
-    category_id,
-  }: CreateVideoDTO) {
+  async execute({ name, description, duration, category_id }: CreateVideoDTO) {
     const categoryExists = this.categoryRepository.findById(category_id);
 
     if (!categoryExists) {

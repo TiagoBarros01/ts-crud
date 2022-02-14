@@ -7,7 +7,7 @@ export class GetCategoryService {
     const category = await this.categoryRepository.findById(id);
 
     if (!category) {
-      throw new Error('Category does not exists!');
+      throw new Error("Category does not exists!");
     }
 
     return category;

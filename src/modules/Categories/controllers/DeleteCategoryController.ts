@@ -2,8 +2,8 @@ import { Request, Response } from "express";
 import { DeleteCategoryService } from "../services/DeleteCategoryService";
 
 type RequestParams = {
-  id: string
-}
+  id: string;
+};
 
 export class DeleteCategoryController {
   async handle(req: Request, res: Response) {

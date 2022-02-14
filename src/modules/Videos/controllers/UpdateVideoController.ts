@@ -8,8 +8,9 @@ export type RequestParams = CreateVideoDTO & {
 
 export class UpdateVideoController {
   async handle(req: Request, res: Response) {
-    const { id } = req.params as Pick<RequestParams, 'id'>;
-    const { name, duration, description, category_id } = req.body as CreateVideoDTO;
+    const { id } = req.params as Pick<RequestParams, "id">;
+    const { name, duration, description, category_id } =
+      req.body as CreateVideoDTO;
 
     const service = new UpdateVideoService();
 
@@ -18,7 +19,7 @@ export class UpdateVideoController {
       name,
       duration,
       description,
-      category_id
+      category_id,
     });
 
     if (result instanceof Error) {

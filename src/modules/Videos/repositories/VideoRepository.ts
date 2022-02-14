@@ -28,7 +28,7 @@ export class VideoRepository implements VideoRepositoryData {
 
   public async findAll(): Promise<Videos[]> {
     const videos = await this.ormRepository.find({
-      relations: ['category']
+      relations: ["category"],
     });
 
     return videos;

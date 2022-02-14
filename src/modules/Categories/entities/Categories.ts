@@ -1,7 +1,7 @@
-import { randomUUID as uuid } from 'crypto';
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm';
+import { randomUUID as uuid } from "crypto";
+import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
 
-@Entity('categories')
+@Entity("categories")
 export class Categories {
   @PrimaryColumn()
   id: string;

@@ -7,7 +7,7 @@ export class GetVideoService {
     const video = await this.videoRepository.findById(id);
 
     if (!video) {
-      throw new Error('Video does not exists!')
+      throw new Error("Video does not exists!");
     }
 
     return video;
